@@ -42,8 +42,11 @@ def parens_match_iterative(mylist):
     >>>parens_match_iterative(['('])
     False
     """
-    ### TODO
-    pass
+    count = iterate(parens_update, 0, mylist)
+    if count == 0:
+        return True
+    else:
+        return False 
 
 
 def parens_update(current_output, next_input):
@@ -58,8 +61,15 @@ def parens_update(current_output, next_input):
     Returns:
       the updated value of `current_output`
     """
-    ###TODO
-    pass
+    if next_input == '(':
+        current_output += 1
+    elif next_input == ')':
+        current_output -= 1
+    else:
+        pass 
+    
+    return current_output
+    
 
 
 def test_parens_match_iterative():
@@ -87,8 +97,9 @@ def parens_match_scan(mylist):
     False
     
     """
-    ###TODO
-    pass
+    paren_map_list = map(paren_map, mylist) # Map each element to its corresponding integer value
+    scan_result = scan(min_f, 0, paren_map_list) # Perform scan with min_f as the reduction function and 0 as the identity element
+    return scan_result[0][-1] == 0 # Check if the last element of the scan result is 0
 
 def scan(f, id_, a):
     """
@@ -160,9 +171,22 @@ def parens_match_dc_helper(mylist):
       L is the number of unmatched left parentheses. This output is used by 
       parens_match_dc to return the final True or False value
     """
-    ###TODO
-    pass
-    
+    if len(mylist) == 0:
+        return 0, 0 # Base case: empty list has 0 unmatched left and right parentheses
+
+    # Divide the list into two halves
+    left_half = mylist[:len(mylist)//2]
+    right_half = mylist[len(mylist)//2:]
+
+    # Recursively call parens_match_dc_helper on each half
+    n_unmatched_left_1, n_unmatched_right_1 = parens_match_dc_helper(left_half)
+    n_unmatched_left_2, n_unmatched_right_2 = parens_match_dc_helper(right_half)
+
+    # Update the count of unmatched left and right parentheses by combining the results from both halves
+    n_unmatched_left = n_unmatched_left_1 + max(0, n_unmatched_left_2 - n_unmatched_right_1)
+    n_unmatched_right = n_unmatched_right_2 + max(0, n_unmatched_right_1 - n_unmatched_left_2)
+
+    return n_unmatched_left, n_unmatched_right
 
 def test_parens_match_dc():
     assert parens_match_dc(['(', ')']) == True
