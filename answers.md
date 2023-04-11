@@ -8,8 +8,8 @@ Place all written answers from `assignment-03.md` here for easier grading.
 
 - **b.**
 
-Work -  W(n) = W(n-1) + 1; Work BigO - W(n) = O(n)
-Span - S(n) = S(n-1) + 1; Span BigO - S(n) = O(n)
+Work -  W(n) = W(n-1) + 1; Work Big Oh - W(n) = O(n)
+Span - S(n) = S(n-1) + 1; Span Big Oh - S(n) = O(n)
 
 
 - **d.**
@@ -22,5 +22,5 @@ Span - S(n) = S(n/2) + log(n)
 
 - **f.**
 
-Work - W(n) = 2W(n/2) + n; Work BigO - W(n) = O(nlog(n))
-Span - S(n) = S(n/2) + 1; Span BigO - S(n) = O(log(n))
+Work - W(n) = 2W(n/2) + n; Work Big Oh - W(n) = O(nlog(n))
+Span - S(n) = S(n/2) + 1; Span Big Oh - S(n) = O(log(n))
